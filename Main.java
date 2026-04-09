@@ -11,25 +11,17 @@ class Main {
     public static void main(String[] args) throws SQLException {
 
         String sql = """
-                SELECT * FROM clients WHERE registration_date BETWEEN ? AND ?
+                SELECT * FROM clients
                 """;
 
         try (var connection = DriverManager.getConnection(URL,
                 USERNAME, PASSWORD);
              var prepareStatement = connection.prepareStatement(sql)) {
 
-            prepareStatement.setDate(1, Date.valueOf("2007-2-24"));
-            prepareStatement.setDate(2, Date.valueOf("2022-6-24"));
-
             var resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt("client_id"));
-                System.out.println("------");
                 System.out.println(resultSet.getString("name"));
-                System.out.println("------");
-                System.out.println(resultSet.getDate("registration_date"));
-                System.out.println();
             }
 
         } catch (SQLException e) {
