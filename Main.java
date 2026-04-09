@@ -11,7 +11,7 @@ class Main {
     public static void main(String[] args) throws SQLException {
 
         String sql = """
-                SELECT * FROM rent
+                SELECT * FROM clients
                 """;
 
         try (var connection = DriverManager.getConnection(URL,
@@ -21,7 +21,7 @@ class Main {
             var resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("rental_id"));
+                System.out.println(resultSet.getString("payment_status"));
             }
 
         } catch (SQLException e) {
