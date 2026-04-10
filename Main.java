@@ -6,9 +6,9 @@ class Main {
     private static final String USERNAME = "postgres";
     private static final String URL = "jdbc:postgresql://localhost:5432/rent_of_transport_equipment";
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         String sql = """
-                SELECT * FROM rent
+                SELECT * FROM vehicles
                 """;
         try (var connection = DriverManager.getConnection(URL,
                 USERNAME, PASSWORD);
@@ -17,7 +17,7 @@ class Main {
             var resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("vehicle_id"));
+                System.out.println(resultSet.getString("brand"));
             }
         } catch (SQLException e) {
             System.out.println("Ex: " + e.getMessage());
