@@ -8,7 +8,7 @@ class Main {
 
     public static void main(String[] args) throws SQLException {
         String sql = """
-                SELECT * FROM clients
+                SELECT * FROM rent
                 """;
         try (var connection = DriverManager.getConnection(URL,
                 USERNAME, PASSWORD);
@@ -17,10 +17,11 @@ class Main {
             var resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("payment_status"));
+                System.out.println(resultSet.getString("vehicle_id"));
             }
         } catch (SQLException e) {
             System.out.println("Ex: " + e.getMessage());
         }
     }
 }
+
