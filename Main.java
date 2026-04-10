@@ -8,7 +8,7 @@ class Main {
 
     public static void main(String[] args) {
         String sql = """
-                SELECT * FROM vehicles
+                SELECT * FROM repairs
                 """;
         try (var connection = DriverManager.getConnection(URL,
                 USERNAME, PASSWORD);
@@ -17,7 +17,7 @@ class Main {
             var resultSet = prepareStatement.executeQuery();
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("brand"));
+                System.out.println(resultSet.getString("vehicle_id"));
             }
         } catch (SQLException e) {
             System.out.println("Ex: " + e.getMessage());
